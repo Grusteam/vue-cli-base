@@ -6,7 +6,7 @@ import store from './store'
 // console.log('_', _);
 
 new Vue({
-  el: '#app',
-  render: h => h(App),
-  store,
+	el: '#app',
+	render: h => h(App),
+	store,
 })
