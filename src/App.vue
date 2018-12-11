@@ -34,11 +34,13 @@
 			</ul>
 		</div>
 		<div class="wrapper">
-			{{ seven }}
+			{{ a }}
 		</div>
 	</div>
 </template>
 <script>
+	import { mapState } from 'vuex';
+
 	export default {
 		data() {
 			return	{
@@ -48,12 +50,7 @@
 				arr: [],
 			}
 		},
-		computed: {
-			seven() {
-				console.log('seven');
-				return this.ten - 3
-			},
-		},
+		computed: mapState(['a']),
 		methods: {
 			show1: () => true,
 			add(e) {
