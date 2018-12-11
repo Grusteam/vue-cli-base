@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		999
+		Xxx component
 	</div>
 </template>
 <script>

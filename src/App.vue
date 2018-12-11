@@ -34,19 +34,39 @@
 			</ul>
 		</div>
 		<div class="wrapper">
+			testComputed -
 			{{ seven }}
 		</div>
 		<div class="wrapper">
-			{{ a }}
+			testVuexProp -
+			{{ testVuexProp }}
+		</div>
+		<div class="wrapper">
+			testVuexGetter -
+			{{ testVuexGetter }}
+		</div>
+		<div class="wrapper">
+			counter -
+			{{ counter }}
+
+			<button
+				@click="COUNTER_INCREASE()"
+			>
+				COUNTER_INCREASE
+			</button>
+
+			<button
+				@click="counterIncrease()"
+			>
+				counterIncrease
+			</button>
 		</div>
 		<Xxx/>
 	</div>
 </template>
 <script>
 	import Xxx from './components/Xxx.vue';
-	import { mapState } from 'vuex';
-
-	console.log('Xxx', Xxx);
+	import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 
 	export default {
 		name: 'App',
@@ -62,14 +82,18 @@
 			}
 		},
 		computed: {
-			...mapState(['a']),
+			...mapState(['testVuexProp', 'counter']),
+			...mapGetters(['testVuexGetter']),
 			seven() {
 				console.log('seven');
 				console.log('this.$store', this.$store);
+
 				return this.ten - 3
 			},
 		},
 		methods: {
+			...mapMutations(['COUNTER_INCREASE']),
+			...mapActions(['counterIncrease']),
 			show1: () => true,
 			add(e) {
 				const { target } = e;
