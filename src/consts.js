@@ -25,7 +25,6 @@ const dataStructure = {
 					text:'Попятчся'
 				},
 				{
-					id: 1,
 					text:'Ололо'
 				},
 				{

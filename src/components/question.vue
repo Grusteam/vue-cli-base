@@ -3,11 +3,25 @@
 		<p>{{ dataStructure.questions[currentQuestion].text }}</p>
 		<ul>
 			<li v-for="(answer, index) in dataStructure.questions[currentQuestion].answers">
-				<input :id="'checkbox_' + currentQuestion + '_' + index" :checked="controlled[currentQuestion] ? controlled[currentQuestion][index] : false" @change="(e) => setAnswer(e, currentQuestion, index)" type="checkbox">
-				<label :for="'checkbox_' + currentQuestion + '_' + index">{{ answer.text }}</label>
+				<input
+					:id="'checkbox_' + currentQuestion + '_' + index"
+					:checked="controlled[currentQuestion] && controlled[currentQuestion][index] ? true : false"
+					@change="(e) => SET_CHECKBOX({
+						question: currentQuestion,
+						answer: index,
+						checked: e.target.checked,
+						reset: !dataStructure.questions[currentQuestion].multi
+					})"
+					type="checkbox"
+				>
+				<label
+					:for="'checkbox_' + currentQuestion + '_' + index"
+				>
+					{{ answer.text }}
+				</label>
 			</li>
 			<div v-show="dataStructure.questions[currentQuestion].multi" class="multi">Можно multi</div>
-			<button @click="ACCEPT_ANSWER">Ответить</button>
+			<button @click="acceptAnswer">Ответить</button>
 		</ul>
 	</div>
 </template>
@@ -26,22 +40,7 @@
 		},
 		methods: {
 			...mapMutations(['SET_CHECKBOX', 'ACCEPT_ANSWER']),
-			...mapActions([]),
-			acceptAnswer() {
-				console.log('acceptAnswer');
-			},
-			setAnswer(e, question, answer) {
-				const { target: { value, checked } } = e;
-
-				this.SET_CHECKBOX({question, answer, checked, reset: !this.dataStructure.questions[question].multi})
-
-				/* if (dataStructure.questions[currentQuestion].multi) {
-
-				} else {
-
-				} */
-
-			}
+			...mapActions(['acceptAnswer']),
 		},
 	}
 </script>

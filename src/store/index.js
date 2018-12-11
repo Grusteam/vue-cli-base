@@ -13,7 +13,14 @@ const store = new Vuex.Store({
         answers: {},
         controlled:{
             0: {
-                0: true
+                0: !!0,
+                1: !!1,
+                2: !!0,
+            },
+            1: {
+               0: !!0,
+                1: !!0,
+                2: !!1,
             }
         }
     },
@@ -25,26 +32,30 @@ const store = new Vuex.Store({
             state.counter += 1;
         },
         SET_CHECKBOX: (state, { question, answer, checked, reset }) => {
+            if (reset && state.controlled[question]) {
+                for (const [key, val] of Object.entries(state.controlled[question])) {
+                    state.controlled[question][key] = false;
+                }
+            }
+
             if (!state.controlled[question]) state.controlled[question] = {};
-
-            if (reset) state.controlled[question] = {};
-
-            console.log('reset', reset);
 
             state.controlled[question][answer] = checked;
         },
-        ACCEPT_ANSWER(state, {  }) {
-            console.log('ACCEPT_ANSWER');
+        NEXT_QUSTION: (state) => {
            state.currentQuestion++;
-        }
+        },
+        SET_ANSWER: (state, { question, answer }) => {
+            state.answers[question] = answer
+        },
     },
     actions: {
         counterIncrease: (context) => {
             context.commit('COUNTER_INCREASE')
         },
-        setAnswer: ({ commit }, question, answer) => {
-            state.answers[question] = answer
-        }
+        acceptAnswer: (context) => {
+            context.commit('NEXT_QUSTION');
+        },
     },
 });
 
