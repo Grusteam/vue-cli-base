@@ -34,14 +34,25 @@
 			</ul>
 		</div>
 		<div class="wrapper">
+			{{ seven }}
+		</div>
+		<div class="wrapper">
 			{{ a }}
 		</div>
+		<Xxx/>
 	</div>
 </template>
 <script>
+	import Xxx from './components/Xxx.vue';
 	import { mapState } from 'vuex';
 
+	console.log('Xxx', Xxx);
+
 	export default {
+		name: 'App',
+		components: {
+			Xxx,
+		},
 		data() {
 			return	{
 				test: 'default',
@@ -50,7 +61,14 @@
 				arr: [],
 			}
 		},
-		computed: mapState(['a']),
+		computed: {
+			...mapState(['a']),
+			seven() {
+				console.log('seven');
+				console.log('this.$store', this.$store);
+				return this.ten - 3
+			},
+		},
 		methods: {
 			show1: () => true,
 			add(e) {
