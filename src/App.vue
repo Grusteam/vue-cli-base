@@ -1,9 +1,10 @@
 <template>
-	<question></question>
+	<question :testProp="null"></question>
 </template>
 <script>
 	import question from './components/question.vue';
 	import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+	
 
 	export default {
 		name: 'App',

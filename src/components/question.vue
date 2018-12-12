@@ -43,9 +43,12 @@
 	import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 	import dataStructure from '../consts.js'
 
+	console.log('this.$props', this.$props);
+
 	export default {
 		name: 'question',
-		data() {
+		props: ['testProp'],
+		data(_this) {
 			return	{
 				dataStructure,
 			}
