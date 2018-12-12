@@ -36,21 +36,45 @@
 			>
 				{{ dataStructure.questions[currentQuestion].prompt }}
 			</div>
+			
+			<div v-if="false" class="tests">
+				<hr>
+				{{ testProp }}
+				<hr>
+				<button
+					@click="$emit('parentMethod', $event, Math.random())"
+				>
+					эмутятор родительского метода
+				</button>
+
+				<hr>
+				<component :is="showedComponent"/>
+				<button
+					@click="showedComponent='Yyy'"
+				>
+					сменить компонент
+				</button>
+			</div>
 		</ul>
 	</div>
 </template>
 <script>
 	import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-	import dataStructure from '../consts.js'
-
-	console.log('this.$props', this.$props);
+	import dataStructure from '../consts.js';
+	import Xxx from './Xxx.vue';
+	import Yyy from './Yyy.vue';
 
 	export default {
 		name: 'question',
 		props: ['testProp'],
+		components: {
+			Xxx,
+			Yyy,
+		},
 		data(_this) {
 			return	{
 				dataStructure,
+				showedComponent: 'Xxx'
 			}
 		},
 		computed: {

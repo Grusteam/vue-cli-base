@@ -1,5 +1,5 @@
 <template>
-	<question :testProp="null"></question>
+	<question :testProp="'testProp'" @parentMethod="parentMethod"></question>
 </template>
 <script>
 	import question from './components/question.vue';
@@ -22,6 +22,9 @@
 		methods: {
 			...mapMutations(['COUNTER_INCREASE']),
 			...mapActions(['counterIncrease']),
+			parentMethod(e, rand) {
+				console.log('e, rand', e, rand);
+			},
 		},
 	}
 </script>
