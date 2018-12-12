@@ -9,7 +9,7 @@ const store = new Vuex.Store({
         testVuexProp: 'testVuexPropValue',
         counter: 0,
         currentQuestion: 0,
-        dataStructure,
+        showPrompt: false,
         answers: {},
         controlled:{
             0: {
@@ -43,7 +43,19 @@ const store = new Vuex.Store({
             state.controlled[question][answer] = checked;
         },
         NEXT_QUSTION: (state) => {
-           state.currentQuestion++;
+            /* если есть следующий вопрос */
+            if (dataStructure.questions[state.currentQuestion + 1]) {
+                /* увеличить номер вопроса */
+                state.currentQuestion++;
+                
+                /* скрыть подсказку */
+                state.showPrompt = false;
+            } else {
+                console.log('finish him!');
+            }
+        },
+        SET_PROMPT: (state, val = false) => {
+           state.showPrompt = val;
         },
         SET_ANSWER: (state, { question, answer }) => {
             state.answers[question] = answer
