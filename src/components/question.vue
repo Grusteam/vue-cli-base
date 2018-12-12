@@ -22,6 +22,7 @@
 			</li>
 			<div v-show="dataStructure.questions[currentQuestion].multi" class="multi">Можно multi</div>
 			<button @click="acceptAnswer">Ответить</button>
+			<!-- <button v-model="propmpt">Подсказка</button> -->
 		</ul>
 	</div>
 </template>
