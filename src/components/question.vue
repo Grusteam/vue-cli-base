@@ -6,10 +6,10 @@
 				<input
 					:id="'checkbox_' + currentQuestion + '_' + index"
 					:checked="controlled[currentQuestion] && controlled[currentQuestion][index] ? true : false"
-					@change="(e) => SET_CHECKBOX({
+					@change="SET_CHECKBOX({
 						question: currentQuestion,
 						answer: index,
-						checked: e.target.checked,
+						checked: $event.target.checked,
 						reset: !dataStructure.questions[currentQuestion].multi
 					})"
 					type="checkbox"
