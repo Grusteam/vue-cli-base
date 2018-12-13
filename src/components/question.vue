@@ -42,7 +42,7 @@
 				{{ testProp }}
 				<hr>
 				<button
-					@click="$emit('parentMethod', $event, Math.random())"
+					@click="$emit('parent-method', $event, Math.random())"
 				>
 					эмутятор родительского метода
 				</button>
@@ -66,7 +66,9 @@
 
 	export default {
 		name: 'question',
-		props: ['testProp'],
+		props: {
+			testProp: String,
+		},
 		components: {
 			Xxx,
 			Yyy,

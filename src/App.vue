@@ -1,5 +1,5 @@
 <template>
-	<question :testProp="'testProp'" @parentMethod="parentMethod"></question>
+	<question :testProp="'testProp'" @parent-method="parentMethod"></question>
 </template>
 <script>
 	import question from './components/question.vue';
